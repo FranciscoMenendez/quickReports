@@ -6,9 +6,9 @@ Streamlined analyses of fieldwork data for early alert needs at the Marine termi
 ###Objective:
 
 To develop a pipeline of basic analyses and reporting to describe the general properties of the marine community around
-the marine terminal of PeruLNG 
+a marine terminal in southeern Peru 
 
-###hat Protocols?
+###What Protocols?
 
 Fish Protocol to start
 Benthos Protocol will depend on availability of results from sample analysis
