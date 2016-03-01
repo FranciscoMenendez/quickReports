@@ -1,0 +1,62 @@
+---
+title: "quickReport"
+author: "fmenendez"
+date: "Tuesday, March 01, 2016"
+output: html_document
+---
+
+#QuickReport
+
+##Abundance by year
+
+```{r, fig.height=10, fig.width=20}
+
+biomet <- read.table('BIOM.2013-2014.csv', header = T, sep = ',')
+
+abundance_year <- table(biomet$Sp_sc, biomet$Ano)
+abundance_year
+
+abundance_year <- as.data.frame(abundance_year)
+
+library(ggplot2)
+
+ggplot(abundance_year, aes(x=Var1, y=Freq, fill=factor(Var2)), color=factor(Var2))+
+  stat_summary(fun.y=mean, position=position_dodge(), geom='bar')+
+  theme(text=element_text(size=20), axis.text.x=element_text(angle=90, hjust=0, vjust=0))+
+  xlab('species')+
+  ylab('abundance')+
+  labs(fill='year')
+
+
+
+```
+
+
+##Abundance per station in 2013
+
+```{r}
+table(biomet[biomet$Ano==2013, 'Sp_sc'], biomet[biomet$Ano==2013, 'Estacion'])
+
+
+```
+
+
+##Abundance per station in 2014
+
+```{r}
+table(biomet[biomet$Ano==2014, 'Sp_sc'], biomet[biomet$Ano==2014, 'Estacion'])
+
+
+```
+
+
+##Richness per year
+
+```{r}
+
+library(plyr)
+ddply(biomet, .(Ano), summarise, 
+      richness=length(unique(Sp_sc))) #species richness per year
+
+```
+
